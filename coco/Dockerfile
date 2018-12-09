@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.6-alpine
 
 ENV JUMPSERVER_COCO_VERSION 1.4.4
 ENV JUMPSERVER_COCO_DOWNLOAD_URL https://github.com/jumpserver/coco/archive/1.4.4.tar.gz
