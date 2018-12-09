@@ -4,7 +4,8 @@ services:
   jumpserver-core:
     image: "${JUMPSERVER_CORE_DOCKER_TAG:-vkill/jumpserver-core:1.4.4-alpine}"
     depends_on:
-      - jumpserver-database
+      - jumpserver-core-database
+      - jumpserver-core-redis
     environment:
       SECRET_KEY: ${JUMPSERVER_CORE_SECRET_KEY:-your_secret_key}
       DB_ENGINE: ${JUMPSERVER_CORE_DB_ENGINE:-postgres}
@@ -19,8 +20,6 @@ services:
       - jumpserver_core_data:/opt/jumpserver_core/data
     restart: always
     pid: host
-    ports:
-      - "${JUMPSERVER_CORE_PORT:-8080}:8080/tcp"
     networks:
       - jumpserver
 
@@ -58,7 +57,7 @@ services:
       - jumpserver
 
   jumpserver-coco:
-    image: "${JUMPSERVER_CORE_DOCKER_TAG:-vkill/jumpserver-core:1.4.4-alpine}"
+    image: "${JUMPSERVER_COCO_DOCKER_TAG:-vkill/jumpserver-coco:1.4.4-alpine}"
     environment:
       SECRET_KEY: ${JUMPSERVER_COCO_SECRET_KEY:-your_secret_key}
       CORE_HOST: ${JUMPSERVER_COCO_CORE_HOST:-http://jumpserver-core:8080}
@@ -69,7 +68,6 @@ services:
     pid: host
     ports:
       - "${JUMPSERVER_COCO_SSHD_PORT:-2222}:2222/tcp"
-      - "${JUMPSERVER_COCO_HTTPD_PORT:-5000}:5000/tcp"
     networks:
       - jumpserver
 
@@ -77,8 +75,24 @@ services:
     image: "${JUMPSERVER_LUNA_DOCKER_TAG:-vkill/jumpserver-luna:1.4.4-alpine}"
     restart: always
     pid: host
+    networks:
+      - jumpserver
+
+  jumpserver-frontend:
+    image: "${JUMPSERVER_FRONTEND_DOCKER_TAG:-vkill/jumpserver-frontend:alpine}"
+    environment:
+      CORE_HOST: ${JUMPSERVER_FRONTEND_CORE_HOST:-jumpserver-core}
+      CORE_PORT: ${JUMPSERVER_FRONTEND_CORE_PORT:-8080}
+      COCO_HOST: ${JUMPSERVER_FRONTEND_COCO_HOST:-jumpserver-coco}
+      COCO_HTTPD_PORT: ${JUMPSERVER_FRONTEND_COCO_HTTPD_PORT:-5000}
+      LUNA_HOST: ${JUMPSERVER_FRONTEND_LUNA_HOST:-jumpserver-luna}
+      LUNA_PORT: ${JUMPSERVER_FRONTEND_LUNA_PORT:-80}
+    volumes:
+      - jumpserver_core_data:/opt/jumpserver_core/data
+    restart: always
+    pid: host
     ports:
-      - "${JUMPSERVER_LUNA_PORT:-80}:80/tcp"
+      - "${JUMPSERVER_FRONTEND_PORT:-80}:80/tcp"
     networks:
       - jumpserver
 

@@ -19,3 +19,8 @@ docker build \
   -t vkill/jumpserver-luna:1.4.4-alpine \
   -f "${script_path_root}../luna/Dockerfile" \
   "${script_path_root}../luna"
+
+docker build \
+  -t vkill/jumpserver-frontend:alpine \
+  -f "${script_path_root}../frontend/Dockerfile" \
+  "${script_path_root}../frontend"
