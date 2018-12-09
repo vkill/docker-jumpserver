@@ -22,7 +22,7 @@ RUN set -ex \
       tcl-dev \
       tk-dev \
     python3-dev \
-    openssl-dev \
+    libressl-dev \
     openldap-dev \
     cyrus-sasl-dev \
     krb5-dev \
