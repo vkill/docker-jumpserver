@@ -14,27 +14,24 @@ RUN set -ex \
     build-base \
     wget \
   \
-  && apk add --no-cache --virtual .rundeps \
-    krb5-dev \
-    sshpass \
-    libressl-dev \
-    libffi-dev \
-  \
   && wget -O jumpserver_coco.tar.gz "${JUMPSERVER_COCO_DOWNLOAD_URL}" \
   && echo "${JUMPSERVER_COCO_DOWNLOAD_SHA256} *jumpserver_coco.tar.gz" | sha256sum -c - \
   && mkdir -p /opt/jumpserver_coco \
   && tar -xzf jumpserver_coco.tar.gz -C /opt/jumpserver_coco --strip-components=1 \
-  && rm jumpserver_coco.tar.gz \
+  && rm jumpserver_coco.tar.gz
+
+COPY conf_docker.py /opt/jumpserver_coco/conf.py
+COPY alpine_requirements.txt /opt/jumpserver_coco/requirements/alpine_requirements.txt
+
+RUN set -ex \
   \
+  && apk add --no-cache --virtual .rundeps $(cat /opt/jumpserver_coco/requirements/alpine_requirements.txt) \
   && pip install -r /opt/jumpserver_coco/requirements/requirements.txt \
   \
   && apk del .builddeps
 
-WORKDIR /opt/jumpserver_coco
-
-COPY config_docker.py /opt/jumpserver_coco/config.py
-
 EXPOSE 2222
 EXPOSE 5000
 
+WORKDIR /opt/jumpserver_coco
 CMD [ "python", "run_server.py" ]
