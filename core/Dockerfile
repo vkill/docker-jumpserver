@@ -25,7 +25,8 @@ COPY alpine_requirements.txt /opt/jumpserver_core/requirements/alpine_requiremen
 RUN set -ex \
   \
   && apk add --no-cache --virtual .rundeps $(cat /opt/jumpserver_core/requirements/alpine_requirements.txt) \
-  && pip install -r /opt/jumpserver_core/requirements/requirements.txt \
+  && pip --no-cache-dir install -r /opt/jumpserver_core/requirements/requirements.txt \
+  && pip --no-cache-dir install psycopg2 \
   \
   && apk del .builddeps
 

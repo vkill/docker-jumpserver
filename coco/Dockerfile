@@ -25,7 +25,7 @@ COPY alpine_requirements.txt /opt/jumpserver_coco/requirements/alpine_requiremen
 RUN set -ex \
   \
   && apk add --no-cache --virtual .rundeps $(cat /opt/jumpserver_coco/requirements/alpine_requirements.txt) \
-  && pip install -r /opt/jumpserver_coco/requirements/requirements.txt \
+  && pip --no-cache-dir install -r /opt/jumpserver_coco/requirements/requirements.txt \
   \
   && apk del .builddeps
 

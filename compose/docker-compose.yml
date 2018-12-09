@@ -8,7 +8,7 @@ services:
       - jumpserver-core-redis
     environment:
       SECRET_KEY: ${JUMPSERVER_CORE_SECRET_KEY:-your_secret_key}
-      DB_ENGINE: ${JUMPSERVER_CORE_DB_ENGINE:-postgres}
+      DB_ENGINE: ${JUMPSERVER_CORE_DB_ENGINE:-postgresql}
       DB_HOST: ${JUMPSERVER_CORE_DB_HOST:-jumpserver-database}
       DB_PORT: ${JUMPSERVER_CORE_DB_PORT:-5432}
       DB_NAME: ${JUMPSERVER_CORE_DB_DATABASE:-jumpserver}
