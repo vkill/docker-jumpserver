@@ -14,40 +14,24 @@ RUN set -ex \
     build-base \
     wget \
   \
-  && apk add --no-cache --virtual .rundeps \
-    tiff-dev \
-    jpeg-dev \
-    zlib-dev \
-    freetype-dev \
-    lcms-dev \
-    libwebp-dev \
-    tcl-dev \
-    tk-dev \
-    python3-dev \
-    libressl-dev \
-    openldap-dev \
-    cyrus-sasl-dev \
-    krb5-dev \
-    sshpass \
-    postgresql-dev \
-    mariadb-dev \
-    sqlite-dev \
-    libffi-dev \
-  \
   && wget -O jumpserver_core.tar.gz "${JUMPSERVER_DOWNLOAD_URL}" \
   && echo "${JUMPSERVER_DOWNLOAD_SHA256} *jumpserver_core.tar.gz" | sha256sum -c - \
   && mkdir -p /opt/jumpserver_core \
   && tar -xzf jumpserver_core.tar.gz -C /opt/jumpserver_core --strip-components=1 \
-  && rm jumpserver_core.tar.gz \
+  && rm jumpserver_core.tar.gz
+
+COPY alpine_requirements.txt /opt/jumpserver_core/requirements/alpine_requirements.txt
+
+RUN set -ex \
   \
+  && apk add --no-cache --virtual .rundeps $(cat /opt/jumpserver_core/requirements/alpine_requirements.txt) \
   && pip install -r /opt/jumpserver_core/requirements/requirements.txt \
   \
   && apk del .builddeps
-
-WORKDIR /opt/jumpserver_core
 
 COPY config_example.py /opt/jumpserver_core/config.py
 
 EXPOSE 8080
 
+WORKDIR /opt/jumpserver_core
 CMD [ "python", "run_server.py", "all" ]

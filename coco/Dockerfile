@@ -20,7 +20,6 @@ RUN set -ex \
   && tar -xzf jumpserver_coco.tar.gz -C /opt/jumpserver_coco --strip-components=1 \
   && rm jumpserver_coco.tar.gz
 
-COPY conf_docker.py /opt/jumpserver_coco/conf.py
 COPY alpine_requirements.txt /opt/jumpserver_coco/requirements/alpine_requirements.txt
 
 RUN set -ex \
@@ -29,6 +28,8 @@ RUN set -ex \
   && pip install -r /opt/jumpserver_coco/requirements/requirements.txt \
   \
   && apk del .builddeps
+
+COPY conf_docker.py /opt/jumpserver_coco/conf.py
 
 EXPOSE 2222
 EXPOSE 5000
