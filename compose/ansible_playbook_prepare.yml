@@ -1,0 +1,6 @@
+---
+- name: Docker jumpserver prepare
+  hosts: all
+  become: true
+
+  tasks:
