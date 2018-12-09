@@ -17,12 +17,12 @@ RUN set -ex \
   && apk add --no-cache --virtual .rundeps \
     tiff-dev \
     jpeg-dev \
-      zlib-dev \
+    zlib-dev \
     freetype-dev \
     lcms-dev \
     libwebp-dev \
-      tcl-dev \
-      tk-dev \
+    tcl-dev \
+    tk-dev \
     python3-dev \
     libressl-dev \
     openldap-dev \
@@ -32,21 +32,21 @@ RUN set -ex \
     postgresql-dev \
     mariadb-dev \
     sqlite-dev \
-        libffi-dev \
+    libffi-dev \
   \
-  && wget -O core.tar.gz "${JUMPSERVER_DOWNLOAD_URL}" \
-  && echo "${JUMPSERVER_DOWNLOAD_SHA256} *core.tar.gz" | sha256sum -c - \
-  && mkdir -p /opt/core \
-  && tar -xzf core.tar.gz -C /opt/core --strip-components=1 \
-  && rm core.tar.gz \
+  && wget -O jumpserver_core.tar.gz "${JUMPSERVER_DOWNLOAD_URL}" \
+  && echo "${JUMPSERVER_DOWNLOAD_SHA256} *jumpserver_core.tar.gz" | sha256sum -c - \
+  && mkdir -p /opt/jumpserver_core \
+  && tar -xzf jumpserver_core.tar.gz -C /opt/jumpserver_core --strip-components=1 \
+  && rm jumpserver_core.tar.gz \
   \
-  && pip install -r /opt/core/requirements/requirements.txt \
+  && pip install -r /opt/jumpserver_core/requirements/requirements.txt \
   \
   && apk del .builddeps
 
-WORKDIR /opt/core
+WORKDIR /opt/jumpserver_core
 
-COPY config_example.py /opt/core/config.py
+COPY config_example.py /opt/jumpserver_core/config.py
 
 EXPOSE 8080
 

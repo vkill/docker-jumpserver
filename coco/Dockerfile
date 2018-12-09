@@ -17,21 +17,22 @@ RUN set -ex \
   && apk add --no-cache --virtual .rundeps \
     krb5-dev \
     sshpass \
+    libressl-dev \
     libffi-dev \
   \
-  && wget -O coco.tar.gz "${JUMPSERVER_COCO_DOWNLOAD_URL}" \
-  && echo "${JUMPSERVER_COCO_DOWNLOAD_SHA256} *coco.tar.gz" | sha256sum -c - \
-  && mkdir -p /opt/coco \
-  && tar -xzf coco.tar.gz -C /opt/coco --strip-components=1 \
-  && rm coco.tar.gz \
+  && wget -O jumpserver_coco.tar.gz "${JUMPSERVER_COCO_DOWNLOAD_URL}" \
+  && echo "${JUMPSERVER_COCO_DOWNLOAD_SHA256} *jumpserver_coco.tar.gz" | sha256sum -c - \
+  && mkdir -p /opt/jumpserver_coco \
+  && tar -xzf jumpserver_coco.tar.gz -C /opt/jumpserver_coco --strip-components=1 \
+  && rm jumpserver_coco.tar.gz \
   \
-  && pip install -r /opt/coco/requirements/requirements.txt \
+  && pip install -r /opt/jumpserver_coco/requirements/requirements.txt \
   \
   && apk del .builddeps
 
-WORKDIR /opt/coco
+WORKDIR /opt/jumpserver_coco
 
-COPY config_docker.py /opt/coco/config.py
+COPY config_docker.py /opt/jumpserver_coco/config.py
 
 EXPOSE 2222
 EXPOSE 5000
