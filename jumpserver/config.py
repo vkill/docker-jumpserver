@@ -82,10 +82,16 @@ class ProductionConfig(Config):
 
 
 class DockerConfig(Config):
-    # Django security setting, if your disable debug model, you should setting that
+    #
     ALLOWED_HOSTS = (os.environ.get('ALLOWED_HOSTS') or '*').split(",")
 
-    # MySQL or postgres setting:
+    #
+    DEBUG = os.environ.get("DEBUG") or False
+
+    #
+    LOG_LEVEL = os.environ.get("LOG_LEVEL") or 'INFO'
+
+    #
     DB_ENGINE = os.environ.get("DB_ENGINE") or 'mysql'
     DB_HOST = os.environ.get("DB_HOST") or '127.0.0.1'
     DB_PORT = os.environ.get("DB_PORT") or 3306
@@ -93,7 +99,11 @@ class DockerConfig(Config):
     DB_PASSWORD = os.environ.get("DB_PASSWORD") or 'weakPassword'
     DB_NAME = os.environ.get("DB_NAME") or 'jumpserver'
 
-    # Use OpenID authorization
+    #
+    REDIS_DB_CELERY = os.environ.get('REDIS_DB_CELERY') or 3
+    REDIS_DB_CACHE = os.environ.get('REDIS_DB_CACHE') or 4
+
+    #
     BASE_SITE_URL = os.environ.get("BASE_SITE_URL") or 'http://localhost:8080'
     AUTH_OPENID = os.environ.get("AUTH_OPENID_ENABLE") or False  # True or False
     AUTH_OPENID_SERVER_URL = os.environ.get("AUTH_OPENID_SERVER_URL") or 'https://openid-auth-server.com/'
