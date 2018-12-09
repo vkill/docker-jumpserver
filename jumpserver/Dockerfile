@@ -7,6 +7,7 @@ ENV JUMPSERVER_DOWNLOAD_SHA256 47ee0d12f51086a132b859455694bb9d737c6da56586257aa
 RUN set -ex \
   \
   && sed -i 's!dl-cdn.alpinelinux.org!mirrors.aliyun.com!' /etc/apk/repositories \
+  && pip config set global.trusted-host mirrors.aliyun.com \
   && pip config set global.index-url http://mirrors.aliyun.com/pypi/simple \
   \
   && apk add --no-cache --virtual .builddeps \
