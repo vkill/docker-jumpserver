@@ -43,6 +43,8 @@ RUN set -ex \
 
 WORKDIR /opt/jumpserver
 
+COPY config.py /opt/jumpserver/config.py
+
 EXPOSE 8080
 
 CMD [ "python", "run_server.py", "all" ]
