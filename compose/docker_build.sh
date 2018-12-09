@@ -14,3 +14,8 @@ docker build \
   -t vkill/jumpserver-coco:1.4.4-alpine \
   -f "${script_path_root}../coco/Dockerfile" \
   "${script_path_root}../coco"
+
+docker build \
+  -t vkill/jumpserver-luna:1.4.4-alpine \
+  -f "${script_path_root}../luna/Dockerfile" \
+  "${script_path_root}../luna"

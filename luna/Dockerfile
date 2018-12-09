@@ -1,0 +1,15 @@
+FROM nginx:1.15-alpine
+
+ENV JUMPSERVER_LUNA_VERSION 1.4.4
+ENV JUMPSERVER_LUNA_DOWNLOAD_URL https://github.com/jumpserver/luna/releases/download/v1.4.4/luna.tar.gz
+ENV JUMPSERVER_LUNA_DOWNLOAD_SHA256 4428ba9ba06df13c07840a67325ba74b453418183003fb403b864af387788f6c
+
+RUN set -ex \
+  \
+  && wget -O jumpserver_luna.tar.gz "${JUMPSERVER_LUNA_DOWNLOAD_URL}" \
+  && echo "${JUMPSERVER_LUNA_DOWNLOAD_SHA256} *jumpserver_luna.tar.gz" | sha256sum -c - \
+  && mkdir -p /opt/jumpserver_luna \
+  && tar -xzf jumpserver_luna.tar.gz -C /opt/jumpserver_luna --strip-components=1 \
+  && rm jumpserver_luna.tar.gz
+
+COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
