@@ -34,19 +34,19 @@ RUN set -ex \
     sqlite-dev \
         libffi-dev \
   \
-  && wget -O jumpserver.tar.gz "${JUMPSERVER_DOWNLOAD_URL}" \
-  && echo "${JUMPSERVER_DOWNLOAD_SHA256} *jumpserver.tar.gz" | sha256sum -c - \
-  && mkdir -p /opt/jumpserver \
-  && tar -xzf jumpserver.tar.gz -C /opt/jumpserver --strip-components=1 \
-  && rm jumpserver.tar.gz \
+  && wget -O core.tar.gz "${JUMPSERVER_DOWNLOAD_URL}" \
+  && echo "${JUMPSERVER_DOWNLOAD_SHA256} *core.tar.gz" | sha256sum -c - \
+  && mkdir -p /opt/core \
+  && tar -xzf core.tar.gz -C /opt/core --strip-components=1 \
+  && rm core.tar.gz \
   \
-  && pip install -r /opt/jumpserver/requirements/requirements.txt \
+  && pip install -r /opt/core/requirements/requirements.txt \
   \
   && apk del .builddeps
 
-WORKDIR /opt/jumpserver
+WORKDIR /opt/core
 
-COPY config.py /opt/jumpserver/config.py
+COPY config_example.py /opt/core/config.py
 
 EXPOSE 8080
 
