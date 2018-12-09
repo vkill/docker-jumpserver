@@ -30,6 +30,7 @@ RUN set -ex \
     postgresql-dev \
     mariadb-dev \
     sqlite-dev \
+        libffi-dev \
   \
   && wget -O jumpserver.tar.gz "${JUMPSERVER_DOWNLOAD_URL}" \
   && echo "${JUMPSERVER_DOWNLOAD_SHA256} *jumpserver.tar.gz" | sha256sum -c - \
