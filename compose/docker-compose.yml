@@ -15,6 +15,8 @@ services:
       DB_PASSWORD: ${JUMPSERVER_CORE_DB_PASSWORD:-jumpserver}
       REDIS_HOST: ${JUMPSERVER_CORE_REDIS_HOST:-jumpserver-redis}
       REDIS_PORT: ${JUMPSERVER_CORE_REDIS_PORT:-6379}
+    volumes:
+      - jumpserver_core_data:/opt/jumpserver_core/data
     restart: always
     pid: host
     ports:
@@ -74,8 +76,10 @@ services:
       - jumpserver
 
 volumes:
+  jumpserver_core_data:
   jumpserver_core_postgres_data:
   jumpserver_core_redis_data:
+  jumpserver_coco_sessions:
 
 networks:
   jumpserver:
