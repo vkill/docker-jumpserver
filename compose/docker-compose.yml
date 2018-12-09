@@ -9,12 +9,12 @@ services:
     environment:
       SECRET_KEY: ${JUMPSERVER_CORE_SECRET_KEY:-your_secret_key}
       DB_ENGINE: ${JUMPSERVER_CORE_DB_ENGINE:-postgresql}
-      DB_HOST: ${JUMPSERVER_CORE_DB_HOST:-jumpserver-database}
+      DB_HOST: ${JUMPSERVER_CORE_DB_HOST:-jumpserver-core-database}
       DB_PORT: ${JUMPSERVER_CORE_DB_PORT:-5432}
       DB_NAME: ${JUMPSERVER_CORE_DB_DATABASE:-jumpserver}
       DB_USER: ${JUMPSERVER_CORE_DB_USER:-jumpserver}
       DB_PASSWORD: ${JUMPSERVER_CORE_DB_PASSWORD:-jumpserver}
-      REDIS_HOST: ${JUMPSERVER_CORE_REDIS_HOST:-jumpserver-redis}
+      REDIS_HOST: ${JUMPSERVER_CORE_REDIS_HOST:-jumpserver-core-redis}
       REDIS_PORT: ${JUMPSERVER_CORE_REDIS_PORT:-6379}
     volumes:
       - jumpserver_core_data:/opt/jumpserver_core/data
