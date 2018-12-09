@@ -66,6 +66,7 @@ services:
       - jumpserver_coco_session:/opt/jumpserver_coco/sessions
     restart: always
     pid: host
+    hostname: ${JUMPSERVER_COCO_HOSTNAME:-jumpserver-coco}
     ports:
       - "${JUMPSERVER_COCO_SSHD_PORT:-2222}:2222/tcp"
     networks:
