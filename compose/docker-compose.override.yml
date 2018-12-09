@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  jumpserver-core:
+    volumes:
+      - jumpserver_core_log:/opt/jumpserver_core/logs
+
+  jumpserver-coco:
+    volumes:
+      - jumpserver_coco_log:/opt/jumpserver_coco/logs
+
+volumes:
+  jumpserver_core_log:
+  jumpserver_coco_log:
+
