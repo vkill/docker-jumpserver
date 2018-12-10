@@ -26,3 +26,14 @@ ssh -p 2222 admin@localhost
 
 Password: admin
 ```
+
+### Note
+
+* The Asset should have `/usr/bin/python`
+
+e.g.
+
+```
+apt install python3
+ln -sf /usr/bin/python3 /usr/bin/python
+```
