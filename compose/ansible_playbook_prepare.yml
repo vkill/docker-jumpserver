@@ -4,3 +4,135 @@
   become: true
 
   tasks:
+    #
+    - name: Ensure jumpserver_core_log exists
+      file:
+        state: directory
+        path: "{{ jumpserver_core_log }}"
+        group: "docker"
+        mode: 0775
+
+    - name: Ensure jumpserver_core_data exists
+      file:
+        state: directory
+        path: "{{ jumpserver_core_data }}"
+        group: "docker"
+        mode: 0775
+
+    #
+    - name: Check jumpserver_core_postgres_data exists
+      stat:
+        path: "{{ jumpserver_core_postgres_data }}"
+      register: jumpserver_core_postgres_data_stat
+
+    - name: Ensure jumpserver_core_postgres_data exists
+      file:
+        state: directory
+        path: "{{ jumpserver_core_postgres_data }}"
+        group: "docker"
+        mode: 0775
+      when: not jumpserver_core_postgres_data_stat.stat.exists
+
+    - name: Ensure jumpserver_core_postgres_log exists
+      file:
+        state: directory
+        path: "{{ jumpserver_core_postgres_log }}"
+        group: "docker"
+        mode: 0777
+
+    - name: Check jumpserver_core_redis_data exists
+      stat:
+        path: "{{ jumpserver_core_redis_data }}"
+      register: jumpserver_core_redis_data_stat
+
+    - name: Ensure jumpserver_core_redis_data exists
+      file:
+        state: directory
+        path: "{{ jumpserver_core_redis_data }}"
+        group: "docker"
+        mode: 0775
+      when: not jumpserver_core_redis_data_stat.stat.exists
+
+    #
+    - name: Ensure jumpserver_coco_log exists
+      file:
+        state: directory
+        path: "{{ jumpserver_coco_log }}"
+        group: "docker"
+        mode: 0775
+
+    - name: Ensure jumpserver_coco_session exists
+      file:
+        state: directory
+        path: "{{ jumpserver_coco_session }}"
+        group: "docker"
+        mode: 0775
+
+    #
+    - name: Ensure jumpserver_dotenv_dir exists
+      file:
+        state: directory
+        path: "{{ jumpserver_dotenv_dir }}"
+        mode: 0755
+
+    - name: Touch .env
+      file:
+        path: "{{ jumpserver_dotenv_dir }}/.env"
+        state: touch
+        mode: 0644
+        access_time: preserve
+        modification_time: preserve
+
+    - name: Update .env
+      lineinfile:
+        path: "{{ jumpserver_dotenv_dir }}/.env"
+        regexp: "^{{ item.key }}="
+        line: '{{ item.key }}={{ item.value }}'
+      with_items:
+        - key: "JUMPSERVER_CORE_LOG_DIR"
+          value: "{{ jumpserver_core_log_dir }}"
+        - key: "JUMPSERVER_COCO_DATA_DIR"
+          value: "{{ jumpserver_core_data_dir }}"
+        - key: "JUMPSERVER_CORE_DB_PASSWORD"
+          value: "{{ jumpserver_core_db_password }}"
+        - key: "JUMPSERVER_CORE_POSTGRES_DATA_DIR"
+          value: "{{ jumpserver_core_postgres_data_dir }}"
+        - key: "JUMPSERVER_CORE_POSTGRES_LOG_DIR"
+          value: "{{ jumpserver_core_postgres_log_dir }}"
+        - key: "JUMPSERVER_CORE_REDIS_DATA_DIR"
+          value: "{{ jumpserver_core_redis_data_dir }}"
+        - key: "JUMPSERVER_COCO_LOG_DIR"
+          value: "{{ jumpserver_coco_log_dir }}"
+        - key: "JUMPSERVER_COCO_SESSION_DIR"
+          value: "{{ jumpserver_coco_session_dir }}"
+        - key: "JUMPSERVER_FRONTEND_PORT"
+          value: "{{ jumpserver_frontend_port }}"
+        - key: "JUMPSERVER_COCO_SSHD_PORT"
+          value: "{{ jumpserver_coco_sshd_port }}"
+
+    - name: Touch postgresql.conf
+      file:
+        path: "{{ jumpserver_postgres_data_dir }}/postgresql.conf"
+        state: touch
+        mode: 0644
+        access_time: preserve
+        modification_time: preserve
+
+    - name: Update postgresql.conf
+      lineinfile:
+        path: "{{ jumpserver_postgres_data_dir }}/postgresql.conf"
+        regexp: "^{{ item.key }}[\\s]*="
+        line: '{{ item.key }} = {{ item.value }}'
+      with_items:
+        - key: "listen_addresses"
+          value: "'*'"
+        - key: "external_pid_file"
+          value: "'/var/run/postgresql/postgresql.pid'"
+        - key: "log_destination"
+          value: "'stderr'"
+        - key: "logging_collector"
+          value: "on"
+        - key: "log_directory"
+          value: "'/var/log/postgresql'"
+        - key: "log_filename"
+          value: "'postgresql.log'"

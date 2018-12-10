@@ -25,35 +25,35 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ${JUMPSERVER_CORE_LOG:-/data/data_jumpserver/jumpserver_core_postgres_log}
+      device: ${JUMPSERVER_CORE_POSTGRES_LOG:-/data/data_jumpserver/jumpserver_core_postgres_log}
       o: bind
   jumpserver_coco_log:
     driver: local
     driver_opts:
       type: none
-      device: ${JUMPSERVER_CORE_LOG:-/data/data_jumpserver/jumpserver_coco_log}
+      device: ${JUMPSERVER_COCO_LOG:-/data/data_jumpserver/jumpserver_coco_log}
       o: bind
   jumpserver_core_data:
     driver: local
     driver_opts:
       type: none
-      device: ${JUMPSERVER_CORE_LOG:-/data/data_jumpserver/jumpserver_core_data}
+      device: ${JUMPSERVER_COCO_DATA:-/data/data_jumpserver/jumpserver_core_data}
       o: bind
   jumpserver_core_postgres_data:
     driver: local
     driver_opts:
       type: none
-      device: ${JUMPSERVER_CORE_LOG:-/data/data_jumpserver/jumpserver_core_postgres_data}
+      device: ${JUMPSERVER_CORE_POSTGRES_DATA:-/data/data_jumpserver/jumpserver_core_postgres_data}
       o: bind
   jumpserver_core_redis_data:
     driver: local
     driver_opts:
       type: none
-      device: ${JUMPSERVER_CORE_LOG:-/data/data_jumpserver/jumpserver_core_redis_data}
+      device: ${JUMPSERVER_CORE_REDIS_DATA:-/data/data_jumpserver/jumpserver_core_redis_data}
       o: bind
   jumpserver_coco_session:
     driver: local
     driver_opts:
       type: none
-      device: ${JUMPSERVER_CORE_LOG:-/data/data_jumpserver/jumpserver_coco_session}
+      device: ${JUMPSERVER_COCO_SESSION:-/data/data_jumpserver/jumpserver_coco_session}
       o: bind
