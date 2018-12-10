@@ -61,7 +61,6 @@ services:
     environment:
       SECRET_KEY: ${JUMPSERVER_COCO_SECRET_KEY:-your_secret_key}
       CORE_HOST: ${JUMPSERVER_COCO_CORE_HOST:-http://jumpserver-core:8080}
-      ACCESS_KEY: ${JUMPSERVER_COCO_ACCESS_KEY:-your_access_key_id:your_access_key_secret}
     volumes:
       - jumpserver_coco_key:/opt/jumpserver_coco/keys
       - jumpserver_coco_session:/opt/jumpserver_coco/sessions

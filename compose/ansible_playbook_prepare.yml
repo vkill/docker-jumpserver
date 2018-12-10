@@ -118,6 +118,10 @@
           value: "{{ jumpserver_frontend_port }}"
         - key: "JUMPSERVER_COCO_SSHD_PORT"
           value: "{{ jumpserver_coco_sshd_port }}"
+        - key: "JUMPSERVER_CORE_SECRET_KEY"
+          value: "\"{{ jumpserver_core_secret_key }}\""
+        - key: "JUMPSERVER_COCO_SECRET_KEY"
+          value: "\"{{ jumpserver_coco_secret_key }}\""
 
     - name: Touch postgresql.conf
       file:
