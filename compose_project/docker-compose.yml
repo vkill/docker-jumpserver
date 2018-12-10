@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  jumpserver-core:
+    networks:
+      - default
+
+  jumpserver-core-database:
+    networks:
+      - default
+
+  jumpserver-core-redis:
+    networks:
+      - default
+
+  jumpserver-coco:
+    networks:
+      - default
+
+  jumpserver-luna:
+    networks:
+      - default
+
+  jumpserver-frontend:
+    networks:
+      - default
+
+networks:
+  default:

@@ -1,0 +1,46 @@
+# {{ ansible_managed }}
+
+"{{ jumpserver_core_log }}/*.log" {
+  daily
+  missingok
+  rotate 30
+  compress
+  copytruncate
+  delaycompress
+  ifempty
+  create 0644 root {{ ansible_user }}
+  dateext
+  dateformat -%Y%m%d
+  dateyesterday
+  su root {{ ansible_user }}
+}
+
+"{{ jumpserver_core_postgres_log }}/*.log" {
+  daily
+  missingok
+  rotate 30
+  compress
+  copytruncate
+  delaycompress
+  ifempty
+  create 0644 root {{ ansible_user }}
+  dateext
+  dateformat -%Y%m%d
+  dateyesterday
+  su root {{ ansible_user }}
+}
+
+"{{ jumpserver_coco_log }}/*.log" {
+  daily
+  missingok
+  rotate 30
+  compress
+  copytruncate
+  delaycompress
+  ifempty
+  create 0644 root {{ ansible_user }}
+  dateext
+  dateformat -%Y%m%d
+  dateyesterday
+  su root {{ ansible_user }}
+}

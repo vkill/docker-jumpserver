@@ -93,7 +93,7 @@ services:
     restart: always
     pid: host
     ports:
-      - "${JUMPSERVER_FRONTEND_PORT:-80}:80/tcp"
+      - "${JUMPSERVER_FRONTEND_PORT:-8080}:80/tcp"
     networks:
       - jumpserver
 

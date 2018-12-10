@@ -1,0 +1,18 @@
+---
+jumpserver_root_dir: "/data/data_jumpserver"
+
+jumpserver_dotenv_dir: "{{ jumpserver_root_dir }}/compose_project"
+
+jumpserver_core_log_dir: "{{ jumpserver_root_dir }}/jumpserver_core_log"
+jumpserver_core_data_dir: "{{ jumpserver_root_dir }}/jumpserver_core_data"
+
+jumpserver_core_db_password: "{{ lookup('env', 'JUMPSERVER_CORE_DB_PASSWORD') }}"
+jumpserver_core_postgres_data_dir: "{{ jumpserver_root_dir }}/jumpserver_core_postgres_data"
+jumpserver_core_postgres_log_dir: "{{ jumpserver_root_dir }}/jumpserver_core_postgres_log"
+jumpserver_core_redis_data_dir: "{{ jumpserver_root_dir }}/jumpserver_core_redis_data"
+
+jumpserver_coco_log_dir: "{{ jumpserver_root_dir }}/jumpserver_coco_log"
+jumpserver_coco_session_dir: "{{ jumpserver_root_dir }}/jumpserver_coco_session"
+
+jumpserver_frontend_port: 8080
+jumpserver_coco_sshd_port: 2222
