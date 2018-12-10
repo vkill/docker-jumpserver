@@ -22,5 +22,7 @@ Password: admin
 ```
 
 ```
-ssh -p 2222 TODO@localhost
+ssh -p 2222 admin@localhost
+
+Password: admin
 ```
