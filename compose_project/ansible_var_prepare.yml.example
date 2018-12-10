@@ -12,6 +12,7 @@ jumpserver_core_postgres_log_dir: "{{ jumpserver_root_dir }}/jumpserver_core_pos
 jumpserver_core_redis_data_dir: "{{ jumpserver_root_dir }}/jumpserver_core_redis_data"
 
 jumpserver_coco_log_dir: "{{ jumpserver_root_dir }}/jumpserver_coco_log"
+jumpserver_coco_key_dir: "{{ jumpserver_root_dir }}/jumpserver_coco_key"
 jumpserver_coco_session_dir: "{{ jumpserver_root_dir }}/jumpserver_coco_session"
 
 jumpserver_frontend_port: 8080

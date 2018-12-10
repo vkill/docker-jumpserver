@@ -63,6 +63,7 @@ services:
       CORE_HOST: ${JUMPSERVER_COCO_CORE_HOST:-http://jumpserver-core:8080}
       ACCESS_KEY: ${JUMPSERVER_COCO_ACCESS_KEY:-your_access_key_id:your_access_key_secret}
     volumes:
+      - jumpserver_coco_key:/opt/jumpserver_coco/keys
       - jumpserver_coco_session:/opt/jumpserver_coco/sessions
     restart: always
     pid: host
@@ -101,6 +102,7 @@ volumes:
   jumpserver_core_data:
   jumpserver_core_postgres_data:
   jumpserver_core_redis_data:
+  jumpserver_coco_key:
   jumpserver_coco_session:
 
 networks:

@@ -61,6 +61,13 @@
         group: "docker"
         mode: 0775
 
+    - name: Ensure jumpserver_coco_key_dir exists
+      file:
+        state: directory
+        path: "{{ jumpserver_coco_key_dir }}"
+        group: "docker"
+        mode: 0775
+
     - name: Ensure jumpserver_coco_session_dir exists
       file:
         state: directory
@@ -103,6 +110,8 @@
           value: "{{ jumpserver_core_redis_data_dir }}"
         - key: "JUMPSERVER_COCO_LOG_DIR"
           value: "{{ jumpserver_coco_log_dir }}"
+        - key: "JUMPSERVER_COCO_KEY_DIR"
+          value: "{{ jumpserver_coco_key_dir }}"
         - key: "JUMPSERVER_COCO_SESSION_DIR"
           value: "{{ jumpserver_coco_session_dir }}"
         - key: "JUMPSERVER_FRONTEND_PORT"
