@@ -5,66 +5,66 @@
 
   tasks:
     #
-    - name: Ensure jumpserver_core_log exists
+    - name: Ensure jumpserver_core_log_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_core_log }}"
+        path: "{{ jumpserver_core_log_dir }}"
         group: "docker"
         mode: 0775
 
-    - name: Ensure jumpserver_core_data exists
+    - name: Ensure jumpserver_core_data_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_core_data }}"
+        path: "{{ jumpserver_core_data_dir }}"
         group: "docker"
         mode: 0775
 
     #
-    - name: Check jumpserver_core_postgres_data exists
+    - name: Check jumpserver_core_postgres_data_dir exists
       stat:
-        path: "{{ jumpserver_core_postgres_data }}"
-      register: jumpserver_core_postgres_data_stat
+        path: "{{ jumpserver_core_postgres_data_dir }}"
+      register: jumpserver_core_postgres_data_dir_stat
 
-    - name: Ensure jumpserver_core_postgres_data exists
+    - name: Ensure jumpserver_core_postgres_data_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_core_postgres_data }}"
+        path: "{{ jumpserver_core_postgres_data_dir }}"
         group: "docker"
         mode: 0775
-      when: not jumpserver_core_postgres_data_stat.stat.exists
+      when: not jumpserver_core_postgres_data_dir_stat.stat.exists
 
-    - name: Ensure jumpserver_core_postgres_log exists
+    - name: Ensure jumpserver_core_postgres_log_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_core_postgres_log }}"
+        path: "{{ jumpserver_core_postgres_log_dir }}"
         group: "docker"
         mode: 0777
 
-    - name: Check jumpserver_core_redis_data exists
+    - name: Check jumpserver_core_redis_data_dir exists
       stat:
-        path: "{{ jumpserver_core_redis_data }}"
-      register: jumpserver_core_redis_data_stat
+        path: "{{ jumpserver_core_redis_data_dir }}"
+      register: jumpserver_core_redis_data_dir_stat
 
-    - name: Ensure jumpserver_core_redis_data exists
+    - name: Ensure jumpserver_core_redis_data_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_core_redis_data }}"
+        path: "{{ jumpserver_core_redis_data_dir }}"
         group: "docker"
         mode: 0775
-      when: not jumpserver_core_redis_data_stat.stat.exists
+      when: not jumpserver_core_redis_data_dir_stat.stat.exists
 
     #
-    - name: Ensure jumpserver_coco_log exists
+    - name: Ensure jumpserver_coco_log_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_coco_log }}"
+        path: "{{ jumpserver_coco_log_dir }}"
         group: "docker"
         mode: 0775
 
-    - name: Ensure jumpserver_coco_session exists
+    - name: Ensure jumpserver_coco_session_dir exists
       file:
         state: directory
-        path: "{{ jumpserver_coco_session }}"
+        path: "{{ jumpserver_coco_session_dir }}"
         group: "docker"
         mode: 0775
 
@@ -112,7 +112,7 @@
 
     - name: Touch postgresql.conf
       file:
-        path: "{{ jumpserver_postgres_data_dir }}/postgresql.conf"
+        path: "{{ jumpserver_core_postgres_data_dir }}/postgresql.conf"
         state: touch
         mode: 0644
         access_time: preserve
@@ -120,7 +120,7 @@
 
     - name: Update postgresql.conf
       lineinfile:
-        path: "{{ jumpserver_postgres_data_dir }}/postgresql.conf"
+        path: "{{ jumpserver_core_postgres_data_dir }}/postgresql.conf"
         regexp: "^{{ item.key }}[\\s]*="
         line: '{{ item.key }} = {{ item.value }}'
       with_items:

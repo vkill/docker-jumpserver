@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-"{{ jumpserver_core_log }}/*.log" {
+"{{ jumpserver_core_log_dir }}/*.log" {
   daily
   missingok
   rotate 30
@@ -15,7 +15,7 @@
   su root {{ ansible_user }}
 }
 
-"{{ jumpserver_core_postgres_log }}/*.log" {
+"{{ jumpserver_core_postgres_log_dir }}/*.log" {
   daily
   missingok
   rotate 30
@@ -30,7 +30,7 @@
   su root {{ ansible_user }}
 }
 
-"{{ jumpserver_coco_log }}/*.log" {
+"{{ jumpserver_coco_log_dir }}/*.log" {
   daily
   missingok
   rotate 30
