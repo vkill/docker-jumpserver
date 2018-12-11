@@ -80,7 +80,7 @@ services:
       - jumpserver
 
   jumpserver-frontend:
-    image: "${JUMPSERVER_FRONTEND_DOCKER_TAG:-vkill/jumpserver-frontend:alpine}"
+    image: "${JUMPSERVER_FRONTEND_DOCKER_TAG:-vkill/jumpserver-frontend:1.4.4-alpine}"
     environment:
       CORE_HOST: ${JUMPSERVER_FRONTEND_CORE_HOST:-jumpserver-core}
       CORE_PORT: ${JUMPSERVER_FRONTEND_CORE_PORT:-8080}
