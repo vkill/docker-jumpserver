@@ -31,6 +31,8 @@ RUN set -ex \
   \
   && apk del .builddeps
 
+COPY conf.py /opt/jumpserver_coco/conf.py
+
 EXPOSE 2222
 EXPOSE 5000
 

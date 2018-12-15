@@ -32,6 +32,8 @@ RUN set -ex \
   \
   && apk del .builddeps
 
+COPY config.py /opt/jumpserver_core/config.py
+
 EXPOSE 8080
 
 WORKDIR /opt/jumpserver_core
