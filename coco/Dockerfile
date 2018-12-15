@@ -2,9 +2,9 @@ FROM python:3.6-alpine
 
 MAINTAINER vkill <vkill.net@gmail.com>
 
-ENV JUMPSERVER_COCO_VERSION 1.4.4
-ENV JUMPSERVER_COCO_DOWNLOAD_URL https://github.com/jumpserver/coco/archive/1.4.4.tar.gz
-ENV JUMPSERVER_COCO_DOWNLOAD_SHA256 4968b647e1ca19540d5ba496200a49e70d4bfa8ec2c027573d915b3cf2f88bd3
+ENV JUMPSERVER_COCO_VERSION 1.4.5
+ENV JUMPSERVER_COCO_DOWNLOAD_URL https://github.com/jumpserver/coco/archive/1.4.5.tar.gz
+ENV JUMPSERVER_COCO_DOWNLOAD_SHA256 8f0d6aa9b385522ec9d823465d0bed58b577a9c2cbdf0ce9cbb795d57d4b476a
 
 RUN set -ex \
   \

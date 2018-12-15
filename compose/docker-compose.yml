@@ -2,7 +2,7 @@ version: '3'
 
 services:
   jumpserver-core:
-    image: "${JUMPSERVER_CORE_DOCKER_TAG:-vkill/jumpserver-core:1.4.4-alpine}"
+    image: "${JUMPSERVER_CORE_DOCKER_TAG:-vkill/jumpserver-core:1.4.5-alpine}"
     depends_on:
       - jumpserver-core-database
       - jumpserver-core-redis
@@ -57,7 +57,7 @@ services:
       - jumpserver
 
   jumpserver-coco:
-    image: "${JUMPSERVER_COCO_DOCKER_TAG:-vkill/jumpserver-coco:1.4.4-alpine}"
+    image: "${JUMPSERVER_COCO_DOCKER_TAG:-vkill/jumpserver-coco:1.4.5-alpine}"
     environment:
       SECRET_KEY: ${JUMPSERVER_COCO_SECRET_KEY:-your_secret_key}
       CORE_HOST: ${JUMPSERVER_COCO_CORE_HOST:-http://jumpserver-core:8080}
@@ -73,14 +73,14 @@ services:
       - jumpserver
 
   jumpserver-luna:
-    image: "${JUMPSERVER_LUNA_DOCKER_TAG:-vkill/jumpserver-luna:1.4.4-alpine}"
+    image: "${JUMPSERVER_LUNA_DOCKER_TAG:-vkill/jumpserver-luna:1.4.5-alpine}"
     restart: always
     pid: host
     networks:
       - jumpserver
 
   jumpserver-frontend:
-    image: "${JUMPSERVER_FRONTEND_DOCKER_TAG:-vkill/jumpserver-frontend:1.4.4-alpine}"
+    image: "${JUMPSERVER_FRONTEND_DOCKER_TAG:-vkill/jumpserver-frontend:1.4.5-alpine}"
     environment:
       CORE_HOST: ${JUMPSERVER_FRONTEND_CORE_HOST:-jumpserver-core}
       CORE_PORT: ${JUMPSERVER_FRONTEND_CORE_PORT:-8080}
