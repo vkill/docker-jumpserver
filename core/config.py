@@ -37,11 +37,11 @@ class Config:
 
     # Development env open this, when error occur display the full process track, Production disable it
     # DEBUG 模式 开启DEBUG后遇到错误时可以看到更多日志
-    DEBUG = os.environ.get("DEBUG") or True
+    DEBUG = os.environ.get("DEBUG") or False
 
     # DEBUG, INFO, WARNING, ERROR, CRITICAL can set. See https://docs.djangoproject.com/en/1.10/topics/logging/
     # 日志级别
-    LOG_LEVEL = os.environ.get("LOG_LEVEL") or 'DEBUG'
+    LOG_LEVEL = os.environ.get("LOG_LEVEL") or 'INFO'
     LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
     # Session expiration setting, Default 24 hour, Also set expired on on browser close
