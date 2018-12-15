@@ -19,4 +19,6 @@ jumpserver_frontend_port: 8080
 jumpserver_coco_sshd_port: 2222
 
 jumpserver_core_secret_key: "OwiwvYOmXjsHLa#74I*uBVWWD28o16GlPrb3mYdn$8Kd8wm4"
+jumpserver_core_bootstrap_token: "48Qjy$NtipN1@L97IT@qU&rJDuTgVbyW3Mg&7XySnbJ0cN*J"
+jumpserver_coco_name: "localhost"
 jumpserver_coco_secret_key: "Lrae2Cwc@s*KgLN!q6b0MuZ436C3KZ$z7cN0yNfjrt#wUECe"

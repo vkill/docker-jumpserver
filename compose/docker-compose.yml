@@ -8,12 +8,13 @@ services:
       - jumpserver-core-redis
     environment:
       SECRET_KEY: ${JUMPSERVER_CORE_SECRET_KEY:-your_secret_key}
+      BOOTSTRAP_TOKEN: ${JUMPSERVER_CORE_BOOTSTRAP_TOKEN:-your_bootstrap_token}
       DB_ENGINE: ${JUMPSERVER_CORE_DB_ENGINE:-postgresql}
       DB_HOST: ${JUMPSERVER_CORE_DB_HOST:-jumpserver-core-database}
       DB_PORT: ${JUMPSERVER_CORE_DB_PORT:-5432}
-      DB_NAME: ${JUMPSERVER_CORE_DB_DATABASE:-jumpserver}
       DB_USER: ${JUMPSERVER_CORE_DB_USER:-jumpserver}
       DB_PASSWORD: ${JUMPSERVER_CORE_DB_PASSWORD:-jumpserver}
+      DB_NAME: ${JUMPSERVER_CORE_DB_DATABASE:-jumpserver}
       REDIS_HOST: ${JUMPSERVER_CORE_REDIS_HOST:-jumpserver-core-redis}
       REDIS_PORT: ${JUMPSERVER_CORE_REDIS_PORT:-6379}
     volumes:
@@ -28,9 +29,9 @@ services:
     volumes:
       - jumpserver_core_postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: ${JUMPSERVER_CORE_DB_DATABASE:-jumpserver}
       POSTGRES_USER: ${JUMPSERVER_CORE_DB_USER:-jumpserver}
       POSTGRES_PASSWORD: ${JUMPSERVER_CORE_DB_PASSWORD:-jumpserver}
+      POSTGRES_DB: ${JUMPSERVER_CORE_DB_DATABASE:-jumpserver}
       PGDATA: /var/lib/postgresql/data/db
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${JUMPSERVER_CORE_DB_USER:-jumpserver}"]
@@ -59,8 +60,10 @@ services:
   jumpserver-coco:
     image: "${JUMPSERVER_COCO_DOCKER_TAG:-vkill/jumpserver-coco:1.4.5-alpine}"
     environment:
-      SECRET_KEY: ${JUMPSERVER_COCO_SECRET_KEY:-your_secret_key}
+      NAME: ${JUMPSERVER_COCO_NAME:-localhost}
       CORE_HOST: ${JUMPSERVER_COCO_CORE_HOST:-http://jumpserver-core:8080}
+      BOOTSTRAP_TOKEN: ${JUMPSERVER_CORE_BOOTSTRAP_TOKEN:-your_bootstrap_token}
+      SECRET_KEY: ${JUMPSERVER_COCO_SECRET_KEY:-your_secret_key}
     volumes:
       - jumpserver_coco_key:/opt/jumpserver_coco/keys
       - jumpserver_coco_session:/opt/jumpserver_coco/sessions

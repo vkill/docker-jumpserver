@@ -120,6 +120,10 @@
           value: "{{ jumpserver_coco_sshd_port }}"
         - key: "JUMPSERVER_CORE_SECRET_KEY"
           value: "\"{{ jumpserver_core_secret_key }}\""
+        - key: "JUMPSERVER_CORE_BOOTSTRAP_TOKEN"
+          value: "\"{{ jumpserver_core_bootstrap_token }}\""
+        - key: "JUMPSERVER_COCO_NAME"
+          value: "{{ jumpserver_coco_name }}"
         - key: "JUMPSERVER_COCO_SECRET_KEY"
           value: "\"{{ jumpserver_coco_secret_key }}\""
 
