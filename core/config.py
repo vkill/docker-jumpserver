@@ -29,7 +29,7 @@ class Config:
     """
     # SECURITY WARNING: keep the secret key used in production secret!
     # 加密秘钥 生产环境中请修改为随机字符串，请勿外泄
-    SECRET_KEY = os.environ.get("SECRET_KEY") or '2vym+ky!997d5kkcc64mnz06y1mmui3lut#(^wd=%s_qj$1%x'
+    SECRET_KEY = os.environ.get("SECRET_KEY") or '^$POU13IsAP%3nhz0u%KnGw0kIwq7Un3&X1lj*65@KTi@%0m'
 
     # SECURITY WARNING: keep the bootstrap token used in production secret!
     # 预共享Token coco和guacamole用来注册服务账号，不在使用原来的注册接受机制
@@ -37,12 +37,12 @@ class Config:
 
     # Development env open this, when error occur display the full process track, Production disable it
     # DEBUG 模式 开启DEBUG后遇到错误时可以看到更多日志
-    # DEBUG = True
+    DEBUG = os.environ.get("DEBUG") or True
 
     # DEBUG, INFO, WARNING, ERROR, CRITICAL can set. See https://docs.djangoproject.com/en/1.10/topics/logging/
     # 日志级别
-    # LOG_LEVEL = 'DEBUG'
-    # LOG_DIR = os.path.join(BASE_DIR, 'logs')
+    LOG_LEVEL = os.environ.get("LOG_LEVEL") or 'DEBUG'
+    LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
     # Session expiration setting, Default 24 hour, Also set expired on on browser close
     # 浏览器Session过期时间，默认24小时, 也可以设置浏览器关闭则过期
