@@ -54,19 +54,19 @@ class Config:
     ASSET_LIST_SORT_BY = 'ip'
 
     # 登录是否支持密码认证
-    PASSWORD_AUTH = True
+    PASSWORD_AUTH = bool(os.environ.get("SSH_PASSWORD_AUTH")) if os.environ.get("SSH_PASSWORD_AUTH") else True
 
     # 登录是否支持秘钥认证
-    PUBLIC_KEY_AUTH = True
+    PUBLIC_KEY_AUTH = bool(os.environ.get("SSH_PUBLIC_KEY_AUTH")) if os.environ.get("SSH_PUBLIC_KEY_AUTH") else True
 
     # SSH白名单
-    ALLOW_SSH_USER = None  # ['test', 'test2']
+    ALLOW_SSH_USER = os.environ.get("ALLOW_SSH_USER").split(",") if os.environ.get("ALLOW_SSH_USER") else None  # ['test', 'test2']
 
     # SSH黑名单, 如果用户同时在白名单和黑名单，黑名单优先生效
-    BLOCK_SSH_USER = []
+    BLOCK_SSH_USER = os.environ.get("BLOCK_SSH_USER").split(",") if os.environ.get("BLOCK_SSH_USER") else []
 
     # 和Jumpserver 保持心跳时间间隔
-    HEARTBEAT_INTERVAL = 5
+    HEARTBEAT_INTERVAL = int(os.environ.get("HEARTBEAT_INTERVAL")) if os.environ.get("HEARTBEAT_INTERVAL") else 5
 
     # Admin的名字，出问题会提示给用户
     # ADMINS = ''
