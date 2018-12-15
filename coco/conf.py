@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
@@ -54,10 +53,10 @@ class Config:
     ASSET_LIST_SORT_BY = 'ip'
 
     # 登录是否支持密码认证
-    PASSWORD_AUTH = bool(os.environ.get("SSH_PASSWORD_AUTH")) if os.environ.get("SSH_PASSWORD_AUTH") else True
+    PASSWORD_AUTH = bool(os.environ.get("PASSWORD_AUTH")) if os.environ.get("PASSWORD_AUTH") else True
 
     # 登录是否支持秘钥认证
-    PUBLIC_KEY_AUTH = bool(os.environ.get("SSH_PUBLIC_KEY_AUTH")) if os.environ.get("SSH_PUBLIC_KEY_AUTH") else True
+    PUBLIC_KEY_AUTH = bool(os.environ.get("PUBLIC_KEY_AUTH")) if os.environ.get("PUBLIC_KEY_AUTH") else True
 
     # SSH白名单
     ALLOW_SSH_USER = os.environ.get("ALLOW_SSH_USER").split(",") if os.environ.get("ALLOW_SSH_USER") else None  # ['test', 'test2']
