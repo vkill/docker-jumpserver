@@ -1,5 +1,5 @@
 ---
-jumpserver_root_dir: "/data/data_jumpserver"
+jumpserver_root_dir: "/data/x_jumpserver"
 
 jumpserver_dotenv_dir: "{{ jumpserver_root_dir }}/compose_project"
 
