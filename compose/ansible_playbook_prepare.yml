@@ -101,7 +101,7 @@
         - key: "JUMPSERVER_COCO_DATA_DIR"
           value: "{{ jumpserver_core_data_dir }}"
         - key: "JUMPSERVER_CORE_DB_PASSWORD"
-          value: "\"{{ jumpserver_core_db_password }}\""
+          value: "{{ jumpserver_core_db_password }}"
         - key: "JUMPSERVER_CORE_POSTGRES_DATA_DIR"
           value: "{{ jumpserver_core_postgres_data_dir }}"
         - key: "JUMPSERVER_CORE_POSTGRES_LOG_DIR"
